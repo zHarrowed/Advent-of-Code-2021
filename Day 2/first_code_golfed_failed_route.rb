@@ -1,0 +1,1 @@
+p ((b=->x,y{x.grep(y).sum{_1[/\d+/].to_i}})[a=$<.to_a,/n/].-b[a,/u/]).*b[a,/f/]
