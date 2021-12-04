@@ -1,8 +1,8 @@
 ## Run with 'ruby first.rb boards_input.txt numbers_input.txt'
 
 boards = []
-File.read(ARGV[0]).lines.select{|l| !l.strip.empty?}.each_slice(5) do |*l|
-  boards << l.map{|x|x.map{|y|y.strip.split(' ').map(&:to_i)}}.first
+File.read(ARGV[0]).lines.select{|l| !l.strip.empty?}.each_slice(5) do |l|
+  boards << l.map{|x|x.strip.split(' ').map(&:to_i)}
 end
 answer = nil
 complete = false

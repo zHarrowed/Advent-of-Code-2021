@@ -1,13 +1,13 @@
 ## Run with 'ruby first.rb boards_input.txt numbers_input.txt'
 
 boards = []
-File.read(ARGV[0]).lines.select{|l| !l.strip.empty?}.each_slice(5) do |*l|
-  boards << l.map{|x|x.map{|y|y.strip.split(' ').map(&:to_i)}}.first
+File.read(ARGV[0]).lines.select{|l| !l.strip.empty?}.each_slice(5) do |l|
+  boards << l.map{|x|x.strip.split(' ').map(&:to_i)}
 end
 answer = nil
 File.read(ARGV[1]).lines.first.strip.split(',').map(&:to_i).each do |number|
   break if answer
-  boards.each_with_index do |board, board_index|
+  boards.each_with_index do |board|
     break if answer
     column_count = [0,0,0,0,0]
     board.each_with_index do |line, i|
