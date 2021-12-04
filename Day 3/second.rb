@@ -1,4 +1,4 @@
-## Run with 'ruby first.rb input.txt'
+## Run with 'ruby second.rb input.txt'
 
 lines = File.read(ARGV[0]).lines.map(&:strip)
 length = lines.first.size

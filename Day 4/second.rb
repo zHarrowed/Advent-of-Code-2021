@@ -1,0 +1,34 @@
+## Run with 'ruby first.rb boards_input.txt numbers_input.txt'
+
+boards = []
+File.read(ARGV[0]).lines.select{|l| !l.strip.empty?}.each_slice(5) do |*l|
+  boards << l.map{|x|x.map{|y|y.strip.split(' ').map(&:to_i)}}.first
+end
+answer = nil
+complete = false
+winning_boards = Array.new(boards.size)
+File.read(ARGV[1]).lines.first.strip.split(',').map(&:to_i).each do |number|
+  break if complete
+  boards.each_with_index do |board, board_index|
+    next if winning_boards[board_index]
+    column_count = [0,0,0,0,0]
+    board.each_with_index do |line, i|
+      line_count = 0
+      line.each_with_index do |value, j|
+        if number == value || value == "x"
+          board[i][j] = "x"
+          line_count += 1
+          column_count[j] += 1
+          if line_count >= 5 || column_count[j] >= 5
+            winning_boards[board_index] = number
+            if winning_boards.compact.size == boards.size
+              complete = true
+              answer = board.sum {|x| x.select{|y| y!="x"}.sum} * number
+            end
+          end
+        end
+      end
+    end
+  end
+end
+puts answer

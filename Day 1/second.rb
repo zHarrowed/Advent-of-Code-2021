@@ -2,7 +2,7 @@
 
 inc = 0
 a = b = c = d = nil
-File.read("input.txt").lines.each do |line|
+File.read("numbers_input.txt").lines.each do |line|
   a = b
   b = c
   c = d
