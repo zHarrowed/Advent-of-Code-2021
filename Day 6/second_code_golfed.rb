@@ -1,5 +1,4 @@
-a=[0]*9
-$<.read.split(?,).map{a[_1.to_i]+=1}
-256.times{a[8]=a.shift
-a[6]+=a[8]}
-p a.sum
+a=$<.read
+b=(0..8).map{a.count"#{_1}"}
+256.times{b[(_1+7)%9]+=b[_1%9]}
+p b.sum
