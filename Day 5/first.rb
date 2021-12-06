@@ -1,4 +1,4 @@
-## Run with 'ruby second.rb input.txt'
+## Run with 'ruby first.rb input.txt'
 
 def increase_point_value(grid, x, y)
   grid[y] ||= []
