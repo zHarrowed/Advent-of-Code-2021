@@ -1,3 +1,5 @@
+## Run with 'ruby second.rb input.txt'
+
 caves = {}
 paths = []
 File.read(ARGV[0]).lines.each do |line|

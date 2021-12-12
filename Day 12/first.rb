@@ -1,3 +1,5 @@
+## Run with 'ruby first.rb input.txt'
+
 caves = {}
 paths = []
 File.read(ARGV[0]).lines.each do |line|
@@ -18,15 +20,7 @@ while !(paths.all? {|path| path.last == "end"})
     current = path.last
     destinations = caves[current].select do |destination|
       if destination.downcase == destination
-        if destination != "start" && destination != "end"
-          if path.count(destination) == 1 && !path.find {|node| node == node.downcase && path.count(node) > 1}
-            true
-          else
-            !path.include?(destination)
-          end
-        else
-          !path.include?(destination)
-        end
+        !path.include?(destination)
       else
         true
       end
