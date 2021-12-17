@@ -82,19 +82,16 @@ def version_number_sum(binary)
   type_number = binary[3..5].to_i(2)
   version_number = binary[0..2].to_i(2)
   if type_number == 4
-    #puts "#{version_number} #{binary}"
     return version_number
   else
     length_type = binary[6].to_i
     if length_type == 0
       sub_packet_length = binary[7..21].to_i(2)
       sum = sub_packets_sum(binary[22..(22+sub_packet_length-1)])
-      #puts "#{version_number} #{binary}"
       return version_number + sum
     else
       sub_packet_limit = binary[7..17].to_i(2)
       sub_sum, _remaining_binary = sub_packet_sum_with_packet_limit(binary[18..], sub_packet_limit)
-      #puts "#{version_number} #{binary}"
       return version_number + sub_sum
     end
   end
