@@ -38,18 +38,19 @@ beacons = []
 beacons += scanners.delete_at(0)
 beacon_locations = [[0,0,0]]
 
-until scanners.empty?
-  deleted = []
-  eval_strings = []
-  [0,1,2].permutation(3).each do |elem1, elem2, elem3|
-    ["", "-"].each do |op1|
-      ["", "-"].each do |op2|
-        ["", "-"].each do |op3|
-          eval_strings << "[#{op1}coordinates[#{elem1}], #{op2}coordinates[#{elem2}], #{op3}coordinates[#{elem3}]]"
-        end
+eval_strings = []
+[0,1,2].permutation(3).each do |elem1, elem2, elem3|
+  ["", "-"].each do |op1|
+    ["", "-"].each do |op2|
+      ["", "-"].each do |op3|
+        eval_strings << "[#{op1}coordinates[#{elem1}], #{op2}coordinates[#{elem2}], #{op3}coordinates[#{elem3}]]"
       end
     end
   end
+end
+
+until scanners.empty?
+  deleted = []
 
   scanners.each_with_index do |scanner, index|
     eval_strings.each do |coordinate_eval_string|
