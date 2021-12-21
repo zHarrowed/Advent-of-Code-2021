@@ -27,22 +27,14 @@ until ongoing.empty?
     from_to_weights[reality[:positions][0]].each do |to_a, weight_a|
       scores = [reality[:scores][0] + to_a, reality[:scores][1]]
       weight = weight_a * reality[:weight]
-      if scores.max > 20
-        if scores[0] >= scores[1]
-          winning_weights[0] += weight
-        else
-          winning_weights[1] += weight
-        end
+      if scores[0] > 20
+        winning_weights[0] += weight
       else
         from_to_weights[reality[:positions][1]].each do |to_b, weight_b|
           scores = [reality[:scores][0] + to_a, reality[:scores][1] + to_b]
           weight = weight_a * weight_b * reality[:weight]
-          if scores.max > 20
-            if scores[0] >= scores[1]
-              winning_weights[0] += weight
-            else
-              winning_weights[1] += weight
-            end
+          if scores[1] > 20
+            winning_weights[1] += weight
           else
             ongoing << {
               positions: [to_a, to_b],
